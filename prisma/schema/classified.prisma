@@ -14,7 +14,7 @@ model Classified {
   make           Make             @relation(fields: [makeId], references: [id])
   modelId        Int              @map("model_id")
   model          Model            @relation(fields: [modelId], references: [id])
-  modelVariantId Int              @map("model_variant_id")
+  modelVariantId Int?             @map("model_variant_id")
   modelVariant   ModelVariant?    @relation(fields: [modelVariantId], references: [id])
   transmission   Transmission     @default(MANUAL)
   color          Color            @default(BLACK)
@@ -32,6 +32,21 @@ model Classified {
   @@index([status], name: "index_status")
   @@index([price], name: "index_price")
   @@map("classifieds")
+}
+
+enum Color {
+  BLACK
+  BLUE
+  BROWN
+  GRAY
+  GREEN
+  SILVER
+  WHITE
+  ORANGE
+  PINK
+  PURPLE
+  RED
+  YELLOW
 }
 
 enum ClassifiedStatus {
@@ -71,19 +86,4 @@ enum FuelType {
 enum Transmission {
   MANUAL
   AUTOMATIC
-}
-
-enum Color {
-  BLACK
-  BLUE
-  BROWN
-  GRAY
-  GREEN
-  SILVER
-  WHITE
-  ORANGE
-  PINK
-  PURPLE
-  RED
-  YELLOW
 }
