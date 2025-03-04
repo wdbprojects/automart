@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
+import DarkMode from "@/components/shared/dark-mode";
+import Test from "@/components/shared/test";
 
 export default function Home() {
   return (
     <div>
       <h1 className="text-primary font-semibold text-2xl">Welcome Home</h1>
-      <Button variant="default" className="cursor-pointer">
-        Add Money
-      </Button>
+      <DarkMode />
+      <Test />
     </div>
   );
 }
