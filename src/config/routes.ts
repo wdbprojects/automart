@@ -9,4 +9,5 @@ export const routes = {
     return `/inventory/${slug}/reserve?step=${step}`;
   },
   favorites: "/favorites",
+  inventory: "/inventory",
 };
