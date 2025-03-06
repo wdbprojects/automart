@@ -175,6 +175,7 @@ const ClassifiedCard = (props: ClassifiedCardProps) => {
                     classified.slug,
                     MultiStepFormEnum.WELCOME,
                   )}
+                  className="text-xs"
                 >
                   Reserve
                 </Link>
@@ -184,7 +185,10 @@ const ClassifiedCard = (props: ClassifiedCardProps) => {
                 asChild
                 size="sm"
               >
-                <Link href={routes.singleClassified(classified.slug)}>
+                <Link
+                  href={routes.singleClassified(classified.slug)}
+                  className="text-xs"
+                >
                   View details
                 </Link>
               </Button>
