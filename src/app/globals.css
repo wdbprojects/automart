@@ -145,3 +145,12 @@ body {
 h1, h2, h3, h4, h6 {
   @apply font-heading
 }
+
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  /* background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'  fill='gray'><path d='m7 10l5 5 5-5z' /> </svg>") no-repeat; */
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='gray' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><path d='M0 9l6 6 6-6'/> </svg>") no-repeat;
+  background-position: right 0px center;
+}

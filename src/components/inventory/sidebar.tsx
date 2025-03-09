@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AwaitedPageProps } from "@/config/types";
 import { parseAsString, useQueryStates } from "nuqs";
@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { routes } from "@/config/routes";
 import { env } from "@/env";
 import { cn } from "@/lib/utils";
+import SearchInput from "@/components/shared/search-input";
+import TaxonomyFilters from "@/components/inventory/taxonomy-filters";
 
 interface SidebarProps extends AwaitedPageProps {
   minMaxValues: any;
@@ -56,6 +58,20 @@ const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
     setFilterCount(filterCount);
   }, [searchParams]);
 
+  const handleChange = async (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = event.target;
+    setQueryStates({ [name]: value || null });
+    if (name === "make") {
+      setQueryStates({
+        model: null,
+        modelVariant: null,
+      });
+    }
+    router.refresh();
+  };
+
   return (
     <div className="py-4 w-[21.25rem] bg-background border-r border-muted-background block">
       <div>
@@ -77,6 +93,20 @@ const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
             Clear all {filterCount ? `(${filterCount})` : null}
           </Button>
         </div>
+      </div>
+
+      <div className="p-4">
+        <SearchInput
+          placeholder="Search classifieds..."
+          className="w-full px-3 py-2 border border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500 !text-sm"
+        />
+      </div>
+
+      <div className="p-4 space-y-2">
+        <TaxonomyFilters
+          searchParams={searchParams}
+          handleChange={handleChange}
+        />
       </div>
     </div>
   );
