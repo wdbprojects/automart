@@ -5,8 +5,8 @@ model Classified {
   vrm             String?
   title           String?
   description     String?
-  year            Int
-  odometerReading Int              @map("odometer_reading")
+  year            Int?
+  odometerReading Int?             @map("odometer_reading")
   doors           Int              @default(2)
   seats           Int              @default(5)
   price           Int              @default(0) @map("price")
@@ -14,14 +14,14 @@ model Classified {
   make            Make             @relation(fields: [makeId], references: [id])
   modelId         Int              @map("model_id")
   model           Model            @relation(fields: [modelId], references: [id])
-  modelVariantId  Int              @map("model_variant_id")
+  modelVariantId  Int?             @map("model_variant_id")
   modelVariant    ModelVariant?    @relation(fields: [modelVariantId], references: [id])
   ulezCompliance  ULEZCompliance   @default(EXEMPT) @map("ulez_compliance`")
   transmission    Transmission     @default(MANUAL)
   color           Color            @default(BLACK)
   fuelType        FuelType         @default(PETROL) @map("fuel_type")
   bodyType        BodyType         @default(SEDAN) @map("body_type")
-  odometerUnit    OdoUnit          @default(MILES) @map("odometer_unit")
+  odometerUnit    OdometerUnit     @default(MILES) @map("odometer_unit")
   currency        CurrencyCode     @default(USD)
   status          ClassifiedStatus @default(DRAFT)
   images          Image[]
@@ -63,7 +63,7 @@ enum CurrencyCode {
   GBP
 }
 
-enum OdoUnit {
+enum OdometerUnit {
   MILES
   KILOMETERS
 }
