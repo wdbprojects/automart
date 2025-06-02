@@ -1,12 +1,15 @@
+import { Favourites } from "@/config/types";
 import ClassifiedCard from "./components/inventory/classified-card";
 import ClassifiedList from "./components/inventory/classified-list";
 
 const InventoryMain = ({
   count,
   classifieds,
+  favourites,
 }: {
   count: number;
   classifieds: any;
+  favourites: number[];
 }) => {
   return (
     <div>
@@ -15,7 +18,7 @@ const InventoryMain = ({
         Inventory Count: {count}
       </p>
       <div className="grid grid-cols-1">
-        <ClassifiedList classifieds={classifieds} />
+        <ClassifiedList classifieds={classifieds} favourites={favourites} />
       </div>
     </div>
   );
