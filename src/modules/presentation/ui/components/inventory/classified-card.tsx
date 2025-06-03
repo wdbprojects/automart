@@ -82,7 +82,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                   blurDataURL={classified.images[0]?.blurhash}
                   src={classified.images[0]?.src}
                   alt={classified.images[0]?.alt}
-                  width={400}
+                  width={500}
                   height={300}
                   quality={25}
                   className="object-cover w-auto h-auto"
