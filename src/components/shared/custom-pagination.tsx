@@ -70,7 +70,7 @@ const CustomPagination = (props: PaginationProps) => {
   };
 
   return (
-    <div className="flex-1 md:flex-2 flex md:justify-start md:items-center border text-sm">
+    <div className="flex-1 md:flex-2 flex md:justify-start md:items-center text-sm">
       <PaginationRoot className={styles.paginationRoot}>
         <PaginationContent className="lg:gap-2">
           <PaginationItem>

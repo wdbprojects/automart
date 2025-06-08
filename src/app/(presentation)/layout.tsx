@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
-import HomeLayout from "@/modules/layouts/home-layout";
+import HomeLayout from "@/modules/presentation/home/home-layout";
 
 interface PresentationLayoutProps {
   children: ReactNode;
 }
 
 const PresentationLayout = ({ children }: PresentationLayoutProps) => {
-  return <HomeLayout>{children}</HomeLayout>;
+  return children;
 };
 
 export default PresentationLayout;

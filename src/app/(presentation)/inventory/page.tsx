@@ -3,8 +3,8 @@ import { AwaitedPageProps, Favourites, PageProps } from "@/config/types";
 import prisma from "@/lib/prisma";
 import { redis } from "@/lib/redis-store";
 import { getSourceId } from "@/lib/source-id";
-import InventoryMain from "@/modules/presentation/ui/inventory-main";
 import { PageSchema } from "@/app/schemas/page.schema";
+import InventoryMain from "@/modules/presentation/inventory/inventory-main";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   // validate page
@@ -32,6 +32,7 @@ const InventoryPage = async (props: PageProps) => {
 
   return (
     <InventoryMain
+      searchParams={searchParams ?? {}}
       count={count}
       classifieds={classifieds}
       favourites={favourites ? favourites.ids : []}
