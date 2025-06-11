@@ -11,11 +11,7 @@ import { parseAsString, useQueryStates } from "nuqs";
 import { routes } from "@/config/routes";
 import { env } from "@/env";
 
-interface SidebarProps extends AwaitedPageProps {
-  minMaxValues: any;
-}
-
-const SidebarHeader = ({ minMaxValues, searchParams }: SidebarProps) => {
+const SidebarHeader = ({ searchParams }: AwaitedPageProps) => {
   const [filterCount, setFilterCount] = useState(0);
 
   useEffect(() => {

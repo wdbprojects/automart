@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import FavoriteButton from "./favorite-button";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/config/routes";
 import {
@@ -15,15 +14,17 @@ import {
 import FavouriteButton from "./favorite-button";
 import { HTMLParser } from "@/components/shared/html-parser";
 import { Cog, Fuel, GaugeCircle, Paintbrush2 } from "lucide-react";
+
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   formatColor,
   FormatFuelType,
   formatNumber,
   formatOdometerUnit,
+  formatPrice,
   formatTransmission,
-} from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+} from "@/lib/format-data";
 
 const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
   const [isFavourite, setIsFavourite] = useState(
@@ -90,7 +91,10 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
               </Link>
               <div className="absolute top-2.5 right-3.5 bg-secondary dark:text-foreground px-2 py-1 rounded">
                 <p className="text-xs lg:text-sm font-semibold">
-                  {classified.price}
+                  {formatPrice({
+                    price: classified.price,
+                    currency: classified.currency,
+                  })}
                 </p>
               </div>
               <FavouriteButton

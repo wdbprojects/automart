@@ -40,3 +40,16 @@ export interface TaxonomyFilterProps extends AwaitedPageProps {
 }
 
 export type FilterOptions<LType, VType> = Array<{ label: LType; value: VType }>;
+
+export type MinMaxResultType = Prisma.GetClassifiedAggregateType<{
+  _min: {
+    year: true;
+    odometerReading: true;
+    price: true;
+  };
+  _max: {
+    year: true;
+    odometerReading: true;
+    price: true;
+  };
+}>;

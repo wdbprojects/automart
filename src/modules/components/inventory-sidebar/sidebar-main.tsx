@@ -1,24 +1,24 @@
 "use client";
 
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import SidebarHeader from "./sidebar-header";
 import SidebarFilters from "./sidebar-filters";
-import { AwaitedPageProps } from "@/config/types";
+import { AwaitedPageProps, MinMaxResultType } from "@/config/types";
 import { parseAsString, useQueryStates } from "nuqs";
 import { useRouter } from "next/navigation";
 
 interface SidebarProps extends AwaitedPageProps {
-  minMaxValues: any;
+  minMaxResult: MinMaxResultType;
 }
 
-const SidebarMain = ({ minMaxValues, searchParams }: SidebarProps) => {
+const SidebarMain = ({ minMaxResult, searchParams }: SidebarProps) => {
   const router = useRouter();
+
   const [queryStates, setQueryStates] = useQueryStates(
     {
       make: parseAsString.withDefault(""),
@@ -69,14 +69,13 @@ const SidebarMain = ({ minMaxValues, searchParams }: SidebarProps) => {
       collapsible="offcanvas"
     >
       <SidebarContent className="py-0 pb-16  m-1">
-        <SidebarHeader
-          minMaxValues={minMaxValues}
-          searchParams={searchParams}
-        />
+        <SidebarHeader searchParams={searchParams} />
         <hr className="mx-2" />
         <SidebarFilters
           handleChange={handleChange}
           searchParams={searchParams}
+          minMaxResult={minMaxResult}
+          queryStates={queryStates}
         />
       </SidebarContent>
       <SidebarFooter className="bg-background rounded-b-lg p-4">

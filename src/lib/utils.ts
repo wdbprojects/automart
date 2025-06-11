@@ -1,4 +1,13 @@
-import { Color, FuelType, OdometerUnit, Transmission } from "@prisma/client";
+import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
+import { AwaitedPageProps } from "@/config/types";
+import {
+  ClassifiedStatus,
+  Color,
+  FuelType,
+  OdometerUnit,
+  Prisma,
+  Transmission,
+} from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { ChangeEvent } from "react";
 import { twMerge } from "tailwind-merge";
@@ -6,43 +15,6 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-export const formatNumber = (
-  num: number | null,
-  options?: Intl.NumberFormatOptions,
-) => {
-  if (!num) return "0";
-  return new Intl.NumberFormat("en-US", options).format(num);
-};
-
-export const formatOdometerUnit = (unit: OdometerUnit) => {
-  return unit === "MILES" ? "mi" : "km";
-};
-
-export const formatTransmission = (transmission: Transmission) => {
-  return transmission === "MANUAL" ? "Manual" : "Automatic";
-};
-
-export const FormatFuelType = (fuelType: FuelType) => {
-  switch (fuelType) {
-    case "ELECTRIC":
-      return "Electric";
-    case "DIESEL":
-      return "Diesel";
-    case "PETROL":
-      return "Petrol";
-    case "HYBRID":
-      return "Hybrid";
-    default:
-      return "Unknown";
-  }
-};
-
-export const formatColor = (color: Color) => {
-  let colorArr = color.toLowerCase().split("");
-  const result = colorArr.toSpliced(0, 1, colorArr[0].toUpperCase());
-  return result.join("");
-};
 
 export const syntheticEvent = (
   value: string,
@@ -83,4 +55,76 @@ export const syntheticEvent = (
     persist: true,
   } as unknown as ChangeEvent<HTMLSelectElement>;
   onChange(syntheticEvent);
+};
+
+// INFO: CLASSIFIED FILTER QUERY
+export const buildClassifiedFilterQuery = (
+  searchParams: AwaitedPageProps["searchParams"] | undefined,
+): Prisma.ClassifiedWhereInput => {
+  const { data } = ClassifiedFilterSchema.safeParse(searchParams);
+  if (!data) {
+    return { status: ClassifiedStatus.LIVE };
+  }
+  const keys = Object.keys(data);
+  const taxonomyFilters = ["make", "model", "modelVariant"];
+
+  const rangeFilters = {
+    minYear: "year",
+    maxYear: "year",
+    minPrice: "price",
+    maxPrice: "price",
+    minReading: "odometerReading",
+    maxReading: "odometerReading",
+  };
+
+  const numFilters = ["seats", "doors"];
+  const enumFilters = [
+    "odometerUnit",
+    "currency",
+    "transmission",
+    "bodyType",
+    "fuelType",
+    "color",
+  ];
+
+  const mapParamsToFields = keys.reduce((acc, key) => {
+    const value = searchParams?.[key] as string | undefined;
+    if (!value) return acc;
+
+    if (taxonomyFilters.includes(key)) {
+      acc[key] = { id: Number(value) };
+    } else if (enumFilters.includes(key)) {
+      acc[key] = value.toUpperCase();
+    } else if (numFilters.includes(key)) {
+      acc[key] = Number(value);
+    } else if (key in rangeFilters) {
+      const field = rangeFilters[key as keyof typeof rangeFilters];
+      acc[field] = acc[field] || {};
+      if (key.startsWith("min")) {
+        acc[field].gte = Number(value);
+      } else if (key.startsWith("max")) {
+        acc[field].lte = Number(value);
+      }
+    }
+
+    return acc;
+  }, {} as { [key: string]: any });
+
+  return {
+    status: ClassifiedStatus.LIVE,
+    ...(searchParams?.q && {
+      OR: [
+        {
+          title: { contains: searchParams.q as string, mode: "insensitive" },
+        },
+        {
+          description: {
+            contains: searchParams.q as string,
+            mode: "insensitive",
+          },
+        },
+      ],
+    }),
+    ...mapParamsToFields,
+  };
 };

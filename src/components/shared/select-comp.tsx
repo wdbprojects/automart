@@ -73,7 +73,7 @@ const SelectComp = (props: SelectProps) => {
             render={({ field }) => {
               return (
                 <FormItem className="!space-y-0">
-                  <FormLabel className="text-xs text-muted-foreground mb-0 pb-0">
+                  <FormLabel className="text-xs text-muted-foreground !mb-0.5 pb-0">
                     {label}
                   </FormLabel>
                   <Select
@@ -91,6 +91,12 @@ const SelectComp = (props: SelectProps) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="rounded-sm dark:bg-black">
+                      <SelectItem
+                        value={null}
+                        className="text-muted-foreground cursor-pointer"
+                      >
+                        {placeholder || "Select"}
+                      </SelectItem>
                       {options.map((option) => {
                         return (
                           <SelectItem

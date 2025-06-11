@@ -1,10 +1,12 @@
-import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";
+import { CLASSIFIEDS_PER_PAGE, CURRENCY_CODE } from "@/config/constants";
 import { AwaitedPageProps, Favourites, PageProps } from "@/config/types";
+import { ClassifiedStatus, Prisma } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { redis } from "@/lib/redis-store";
 import { getSourceId } from "@/lib/source-id";
 import { PageSchema } from "@/app/schemas/page.schema";
 import InventoryMain from "@/modules/presentation/inventory/inventory-main";
+import { buildClassifiedFilterQuery } from "@/lib/utils";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   // validate page
@@ -15,6 +17,7 @@ const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   const offset = (currentPage - 1) * CLASSIFIEDS_PER_PAGE;
 
   return prisma.classified.findMany({
+    where: buildClassifiedFilterQuery(searchParams),
     include: { images: { take: 1 } },
     skip: offset,
     take: CLASSIFIEDS_PER_PAGE,
@@ -24,7 +27,26 @@ const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
 const InventoryPage = async (props: PageProps) => {
   const searchParams = await props.searchParams;
   const classifieds = await getInventory(searchParams);
-  const count = await prisma.classified.count();
+  const count = await prisma.classified.count({
+    where: buildClassifiedFilterQuery(searchParams),
+  });
+
+  const minMaxResult = await prisma.classified.aggregate({
+    where: {
+      status: ClassifiedStatus.LIVE,
+    },
+    _min: {
+      price: true,
+      year: true,
+      odometerReading: true,
+    },
+    _max: {
+      price: true,
+      year: true,
+      odometerReading: true,
+    },
+  });
+
   const totalPages = Math.ceil(count / CLASSIFIEDS_PER_PAGE);
 
   const sourceId = await getSourceId();
@@ -37,6 +59,7 @@ const InventoryPage = async (props: PageProps) => {
       classifieds={classifieds}
       favourites={favourites ? favourites.ids : []}
       totalPages={totalPages}
+      minMaxResult={minMaxResult}
     />
   );
 };

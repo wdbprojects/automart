@@ -4,3 +4,11 @@ export const imageSources = {
 };
 
 export const CLASSIFIEDS_PER_PAGE = 12;
+
+export const CURRENCY_CODE = {
+  BO: "es-BO",
+  US: "en-US",
+  GB: "en-GB",
+};
+
+export const MAX_SAFE_INTEGER_PG = 2147483647;

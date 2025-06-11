@@ -5,7 +5,7 @@ import { routes } from "@/config/routes";
 import { Separator } from "@/components/ui/separator";
 import SidebarFilters from "@/modules/components/inventory-sidebar/sidebar-main";
 import InventoryNavbar from "@/modules/components/inventory/inventory-navbar";
-import { PageProps } from "@/config/types";
+import { MinMaxResultType } from "@/config/types";
 
 const InventoryMain = ({
   count,
@@ -13,27 +13,32 @@ const InventoryMain = ({
   favourites,
   totalPages,
   searchParams,
+  minMaxResult,
 }: {
   count: number;
   classifieds: any;
   favourites: number[];
   totalPages: number;
   searchParams: { [x: string]: string | string[] | undefined };
+  minMaxResult: MinMaxResultType;
 }) => {
   return (
     <div className="w-full mt-[4rem]">
       <InventoryNavbar />
       <div className="flex min-h-screen">
-        <SidebarFilters minMaxValues={null} searchParams={searchParams ?? {}} />
+        <SidebarFilters
+          minMaxResult={minMaxResult}
+          searchParams={searchParams ?? {}}
+        />
         <div className="mt-0">
           <div className="flex flex-col md:flex-row items-center justify-start gap-2 md:justify-between px-4 py-1 h-10 mb-10 md:mb-0">
-            <h2 className="text-sm font-semibold text-foreground flex-1">
+            <h2 className="text-sm font-semibold text-foreground flex-1 min-w-[250px]">
               Items found: {count}
             </h2>
             <CustomPagination
               baseURL={routes.inventory}
               totalPages={totalPages}
-              maxVisiblePages={5}
+              maxVisiblePages={10}
               styles={{
                 paginationRoot: "justify-end",
                 paginationPrevious: "",
