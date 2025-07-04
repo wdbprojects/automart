@@ -1,4 +1,4 @@
-import InventoryLayout from "@/modules/presentation/inventory/inventory-layout";
+import InventoryLayout from "@/modules/layouts/inventory-layout";
 import { ReactNode } from "react";
 
 interface PresentationLayoutProps {

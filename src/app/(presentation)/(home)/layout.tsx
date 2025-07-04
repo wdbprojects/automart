@@ -1,4 +1,4 @@
-import HomeLayout from "@/modules/presentation/home/home-layout";
+import HomeLayout from "@/modules/layouts/home-layout";
 import { ReactNode } from "react";
 
 interface PresentationLayoutProps {

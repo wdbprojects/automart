@@ -30,7 +30,7 @@ const SearchInput = (props: SearchInputProps) => {
       (value: string) => {
         setSearch(value || null);
       },
-      1000,
+      100,
       { immediate: true },
     ),
     [],

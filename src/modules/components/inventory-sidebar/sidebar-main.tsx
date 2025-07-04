@@ -11,6 +11,7 @@ import SidebarFilters from "./sidebar-filters";
 import { AwaitedPageProps, MinMaxResultType } from "@/config/types";
 import { parseAsString, useQueryStates } from "nuqs";
 import { useRouter } from "next/navigation";
+import NewsletterForm from "@/components/shared/newsletter-form";
 
 interface SidebarProps extends AwaitedPageProps {
   minMaxResult: MinMaxResultType;
@@ -80,7 +81,7 @@ const SidebarMain = ({ minMaxResult, searchParams }: SidebarProps) => {
       </SidebarContent>
       <SidebarFooter className="bg-background rounded-b-lg p-4">
         <div className="flex justify-center w-full rounded-sm">
-          <span className="text-xl">NEWSLETTER FORM</span>
+          <NewsletterForm />
         </div>
         <div className="px-0 py-2 bg-secondary text-sm text-center">
           AutoMart &copy; 2025

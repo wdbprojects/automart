@@ -10,4 +10,5 @@ export const routes = {
   },
   favourites: "/favourites",
   inventory: "/inventory",
+  about: "/about",
 };
