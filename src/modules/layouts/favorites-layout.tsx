@@ -5,8 +5,8 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const InventoryLayout = ({ children }: LayoutProps) => {
+const FavouritesLayoutModule = ({ children }: LayoutProps) => {
   return <SidebarProvider>{children}</SidebarProvider>;
 };
 
-export default InventoryLayout;
+export default FavouritesLayoutModule;

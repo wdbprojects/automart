@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SelectComp from "@/components/shared/select-comp";
 import {
   AwaitedPageProps,
   FilterOptions,
@@ -9,6 +8,7 @@ import {
 } from "@/config/types";
 import { endpoints } from "@/config/endpoints";
 import { api } from "@/lib/api-client";
+import SelectCompOrig from "@/components/shared/select-comp-orig";
 
 const TaxonomyFilters = (props: TaxonomyFilterProps) => {
   const { searchParams, handleChange } = props;
@@ -45,7 +45,7 @@ const TaxonomyFilters = (props: TaxonomyFilterProps) => {
   return (
     <div className="space-y-4">
       {/* MAKE */}
-      <SelectComp
+      <SelectCompOrig
         label="Make"
         name="make"
         value={searchParams?.make as string}
@@ -54,7 +54,7 @@ const TaxonomyFilters = (props: TaxonomyFilterProps) => {
         noDefault={true}
         onChange={handleChange}
       />
-      <SelectComp
+      <SelectCompOrig
         label="Model"
         name="model"
         value={searchParams?.model as string}
@@ -64,7 +64,7 @@ const TaxonomyFilters = (props: TaxonomyFilterProps) => {
         onChange={handleChange}
         disabled={!models.length}
       />
-      <SelectComp
+      <SelectCompOrig
         label="Model Variant"
         name="modelVariant"
         value={searchParams?.modelVariant as string}

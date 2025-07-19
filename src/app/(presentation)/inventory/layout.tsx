@@ -1,5 +1,5 @@
-import InventoryLayout from "@/modules/layouts/inventory-layout";
 import { ReactNode } from "react";
+import InventoryLayout from "@/modules/layouts/inventory-layout";
 
 interface PresentationLayoutProps {
   children: ReactNode;

@@ -25,7 +25,7 @@ import { useForm } from "react-hook-form";
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   name: string;
-  value: string;
+  value?: string | null;
   options: { label: string; value: string }[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
@@ -92,7 +92,7 @@ const SelectComp = (props: SelectProps) => {
                     </FormControl>
                     <SelectContent className="rounded-sm dark:bg-black">
                       <SelectItem
-                        value={null}
+                        value={""}
                         className="text-muted-foreground cursor-pointer"
                       >
                         {placeholder || "Select"}

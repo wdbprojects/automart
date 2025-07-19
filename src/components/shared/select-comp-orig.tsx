@@ -13,6 +13,7 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   selectClassName?: string;
   noDefault?: boolean;
   disabled?: boolean;
+  placeholder?: string;
 }
 
 const SelectCompOrig = (props: SelectProps) => {
@@ -25,6 +26,7 @@ const SelectCompOrig = (props: SelectProps) => {
     selectClassName,
     noDefault = true,
     disabled,
+    placeholder = "Select...",
     ...rest
   } = props;
 
@@ -41,10 +43,14 @@ const SelectCompOrig = (props: SelectProps) => {
           onChange={onChange}
           value={value ?? ""}
           disabled={disabled}
-          className={cn("main-select-class", "custom-select")}
+          className={cn(
+            "main-select-class",
+            "custom-select",
+            "disabled:!bg-muted disabled:!cursor-default",
+          )}
           {...rest}
         >
-          {noDefault && <option value="">Select...</option>}
+          {noDefault && <option value="">{placeholder}</option>}
           {options.map((option) => {
             return (
               <option key={option.value} value={option.value}>

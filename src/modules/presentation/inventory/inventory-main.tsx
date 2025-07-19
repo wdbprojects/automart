@@ -1,11 +1,9 @@
-import ClassifiedCard from "../../components/inventory/classified-card";
 import ClassifiedList from "../../components/inventory/classified-list";
 import CustomPagination from "../../../components/shared/custom-pagination";
 import { routes } from "@/config/routes";
-import { Separator } from "@/components/ui/separator";
 import SidebarFilters from "@/modules/components/inventory-sidebar/sidebar-main";
 import InventoryNavbar from "@/modules/components/inventory/inventory-navbar";
-import { MinMaxResultType } from "@/config/types";
+import { ClassifiedWithImages, MinMaxResultType } from "@/config/types";
 import InventoryFooter from "@/modules/components/inventory/inventory-footer";
 
 const InventoryMain = ({
@@ -17,7 +15,7 @@ const InventoryMain = ({
   minMaxResult,
 }: {
   count: number;
-  classifieds: any;
+  classifieds: Promise<ClassifiedWithImages[]>;
   favourites: number[];
   totalPages: number;
   searchParams: { [x: string]: string | string[] | undefined };

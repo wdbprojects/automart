@@ -89,7 +89,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                   className="object-cover w-auto h-auto"
                 />
               </Link>
-              <div className="absolute top-2.5 right-3.5 bg-secondary dark:text-foreground px-2 py-1 rounded">
+              <div className="absolute top-2.5 right-3.5 bg-secondary dark:bg-[#eff6ff] dark:text-background px-2 py-1 rounded">
                 <p className="text-xs lg:text-sm font-semibold">
                   {formatPrice({
                     price: classified.price,

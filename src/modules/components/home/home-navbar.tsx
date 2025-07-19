@@ -49,7 +49,7 @@ const HomeNavbar = async () => {
         {/* <div className="flex-1 hidden md:flex justify-center max-w-[720px] mx-auto border p-1">
           <span className="text-xl text-center">SEARCH BAR GOES HERE HOME</span>
         </div> */}
-        <div>
+        {/* <div>
           <span className="text-xl text-center ">
             <Button size="sm" variant="default" asChild>
               <Link
@@ -60,7 +60,7 @@ const HomeNavbar = async () => {
               </Link>
             </Button>
           </span>
-        </div>
+        </div> */}
         {/* //NOTE: BUTTONS & AUTH */}
         <div className="flex flex-shrink-0 items-center gap-3 p-1">
           <DarkMode />
@@ -73,7 +73,7 @@ const HomeNavbar = async () => {
                   variant="outline"
                   asChild
                 >
-                  <Link href="/" className="relative">
+                  <Link href="/favourites" className="relative">
                     <Heart />
                     {favourites?.ids.length && favourites?.ids.length > 0 ? (
                       <Badge
@@ -88,6 +88,17 @@ const HomeNavbar = async () => {
               </TooltipTrigger>
             </Tooltip>
           </TooltipProvider>
+          <span className="text-xl text-center ">
+            <Button size="sm" variant="outline" asChild>
+              <Link
+                href="/inventory"
+                className="!font-medium dark:text-muted-foreground"
+              >
+                Search Inventory
+              </Link>
+            </Button>
+          </span>
+
           <Button
             size="sm"
             className="cursor-pointer dark:text-muted-foreground"

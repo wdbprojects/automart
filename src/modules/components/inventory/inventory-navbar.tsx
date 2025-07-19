@@ -68,7 +68,7 @@ const InventoryNavbar = async () => {
                   variant="outline"
                   asChild
                 >
-                  <Link href="/" className="relative">
+                  <Link href="/favourites" className="relative">
                     <Heart />
                     {favourites?.ids.length && favourites?.ids.length > 0 ? (
                       <Badge
