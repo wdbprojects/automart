@@ -29,7 +29,7 @@ const InventoryMain = ({
           minMaxResult={minMaxResult}
           searchParams={searchParams ?? {}}
         />
-        <div className="flex flex-col justify-between pb-[0rem] pt-[4rem]">
+        <div className="flex flex-col justify-between pb-[0rem] pt-[4rem] w-full">
           <div className="flex-1">
             <div className="flex flex-col md:flex-row items-center justify-start gap-2 md:justify-between px-4 py-1 mb-10 md:mb-0">
               <h2 className="text-sm font-semibold text-foreground flex-1 min-w-[250px]">

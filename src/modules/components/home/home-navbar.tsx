@@ -99,11 +99,7 @@ const HomeNavbar = async () => {
             </Button>
           </span>
 
-          <Button
-            size="sm"
-            className="cursor-pointer dark:text-muted-foreground"
-            asChild
-          >
+          <Button size="sm" className="cursor-pointer text-white" asChild>
             <Link href="/">Sign In</Link>
           </Button>
           <Sheet>

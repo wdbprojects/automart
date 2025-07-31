@@ -53,3 +53,7 @@ export type MinMaxResultType = Prisma.GetClassifiedAggregateType<{
     price: true;
   };
 }>;
+
+export type ClassifiedWithImagesAndMake = Prisma.ClassifiedGetPayload<{
+  include: { images: true; make: true };
+}>;

@@ -11,4 +11,7 @@ export const routes = {
   favourites: "/favourites",
   inventory: "/inventory",
   about: "/about",
+  notAvailable: (slug: string) => {
+    return `/inventory/${slug}/not-available`;
+  },
 };

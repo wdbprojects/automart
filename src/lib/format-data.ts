@@ -1,5 +1,6 @@
 import { CURRENCY_CODE } from "@/config/constants";
 import {
+  BodyType,
   Color,
   CurrencyCode,
   FuelType,
@@ -44,7 +45,7 @@ export const formatTransmission = (transmission: Transmission) => {
   return transmission === "MANUAL" ? "Manual" : "Automatic";
 };
 
-export const FormatFuelType = (fuelType: FuelType) => {
+export const formatFuelType = (fuelType: FuelType) => {
   switch (fuelType) {
     case "ELECTRIC":
       return "Electric";
@@ -54,6 +55,25 @@ export const FormatFuelType = (fuelType: FuelType) => {
       return "Petrol";
     case "HYBRID":
       return "Hybrid";
+    default:
+      return "Unknown";
+  }
+};
+
+export const formatBodyType = (bodyType: BodyType) => {
+  switch (bodyType) {
+    case BodyType.CONVERTIBLE:
+      return "Convertible";
+    case BodyType.COUPE:
+      return "Coupe";
+    case BodyType.HATCHBACK:
+      return "Hatchback";
+    case BodyType.SUV:
+      return "SUV";
+    case BodyType.WAGON:
+      return "Wagon";
+    case BodyType.SEDAN:
+      return "Sedan";
     default:
       return "Unknown";
   }

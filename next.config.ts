@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "wdb-automart.s3.us-east-1.amazonaws.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "vl.imgix.net",
         port: "",
       },

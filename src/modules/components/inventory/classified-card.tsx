@@ -19,12 +19,13 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   formatColor,
-  FormatFuelType,
+  formatFuelType,
   formatNumber,
   formatOdometerUnit,
   formatPrice,
   formatTransmission,
 } from "@/lib/format-data";
+import { ImgixImage } from "@/components/shared/imgix-image";
 
 const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
   const [isFavourite, setIsFavourite] = useState(
@@ -57,7 +58,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
       {
         id: "fuelType",
         icon: <Fuel className="w-4 h-4" />,
-        value: FormatFuelType(classified?.fuelType),
+        value: formatFuelType(classified?.fuelType),
       },
       {
         id: "color",
@@ -77,8 +78,8 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
         >
           <Card className="w-full pt-0 pb-4 gap-2 rounded-md overflow-hidden flex flex-col justify-between space-y-2">
             <CardContent className="px-0 relative">
-              <Link href={routes.singleClassified("slug")}>
-                <Image
+              <Link href={routes.singleClassified(classified.slug)}>
+                <ImgixImage
                   placeholder="blur"
                   blurDataURL={classified.images[0]?.blurhash}
                   src={classified.images[0]?.src}
@@ -156,7 +157,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                 className="cursor-pointer sm:flex-1 w-full text-white dark:text-foreground"
               >
                 <Link
-                  href={routes.singleClassified("slug")}
+                  href={routes.singleClassified(classified.slug)}
                   className="text-xs font-semibold"
                 >
                   View details
