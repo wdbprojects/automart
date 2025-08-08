@@ -9,7 +9,6 @@ import { EffectFade, Navigation, Thumbs, Virtual } from "swiper/modules";
 import { SwiperSlide } from "swiper/react";
 import { type Swiper as SwiperType } from "swiper";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import SwiperButtons from "./swiper-buttons";
 import { ImgixImage } from "@/components/shared/imgix-image";
 import CarouselSkeleton from "./carrousel-skeleton";

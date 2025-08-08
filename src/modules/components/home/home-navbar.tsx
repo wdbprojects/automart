@@ -64,6 +64,21 @@ const HomeNavbar = async () => {
         {/* //NOTE: BUTTONS & AUTH */}
         <div className="flex flex-shrink-0 items-center gap-3 p-1">
           <DarkMode />
+
+          <span className="text-xl text-center ">
+            <Button size="sm" variant="outline" asChild>
+              <Link
+                href="/inventory"
+                className="!font-medium dark:text-muted-foreground"
+              >
+                Search Inventory
+              </Link>
+            </Button>
+          </span>
+
+          <Button size="sm" className="cursor-pointer text-white" asChild>
+            <Link href="/">Sign In</Link>
+          </Button>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -88,20 +103,6 @@ const HomeNavbar = async () => {
               </TooltipTrigger>
             </Tooltip>
           </TooltipProvider>
-          <span className="text-xl text-center ">
-            <Button size="sm" variant="outline" asChild>
-              <Link
-                href="/inventory"
-                className="!font-medium dark:text-muted-foreground"
-              >
-                Search Inventory
-              </Link>
-            </Button>
-          </span>
-
-          <Button size="sm" className="cursor-pointer text-white" asChild>
-            <Link href="/">Sign In</Link>
-          </Button>
           <Sheet>
             <TooltipProvider>
               <Tooltip>

@@ -59,6 +59,9 @@ const InventoryNavbar = async () => {
         {/* //NOTE: AUTH */}
         <div className="flex flex-shrink-0 items-center gap-3 p-1">
           <DarkMode />
+          <Button size="sm" className="cursor-pointer text-white" asChild>
+            <Link href="/">Sign In</Link>
+          </Button>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -86,13 +89,6 @@ const InventoryNavbar = async () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <Button
-            size="sm"
-            className="cursor-pointer dark:text-muted-foreground"
-            asChild
-          >
-            <Link href="/">Sign In</Link>
-          </Button>
           <Sheet>
             <TooltipProvider>
               <Tooltip>

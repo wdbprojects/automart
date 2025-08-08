@@ -10,8 +10,8 @@ const HomeLayout = ({ children }: LayoutProps) => {
   return (
     <div className="w-full min-h-screen">
       <HomeNavbar />
-      <div className="flex flex-col pt-[4rem] !h-screen justify-between">
-        <main className="flex- overflow-y-auto">{children}</main>
+      <div className="block pt-[4rem] !h-screen">
+        <main className="flex overflow-y-auto">{children}</main>
         <HomeFooter />
       </div>
     </div>

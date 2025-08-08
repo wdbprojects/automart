@@ -57,3 +57,10 @@ export type MinMaxResultType = Prisma.GetClassifiedAggregateType<{
 export type ClassifiedWithImagesAndMake = Prisma.ClassifiedGetPayload<{
   include: { images: true; make: true };
 }>;
+
+export interface SidebarProps extends AwaitedPageProps {
+  minMaxValues: Prisma.GetClassifiedAggregateType<{
+    _min: { year: true; price: true; odometerReading: true };
+    _max: { year: true; price: true; odometerReading: true };
+  }>;
+}
