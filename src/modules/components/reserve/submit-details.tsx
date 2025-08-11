@@ -21,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { createCustomerAction } from "@/app/_actions/customer";
 import { formatDate } from "@/lib/utils";
 import { toast } from "sonner";

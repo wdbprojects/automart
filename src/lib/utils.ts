@@ -1,13 +1,6 @@
 import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
 import { AwaitedPageProps } from "@/config/types";
-import {
-  ClassifiedStatus,
-  Color,
-  FuelType,
-  OdometerUnit,
-  Prisma,
-  Transmission,
-} from "@prisma/client";
+import { ClassifiedStatus, Prisma } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { ChangeEvent } from "react";
 import { twMerge } from "tailwind-merge";
