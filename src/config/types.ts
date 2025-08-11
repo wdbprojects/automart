@@ -1,9 +1,13 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactNode } from "react";
 import { Prisma } from "@prisma/client";
 
 type Params = {
   [x: string]: string | string[];
 };
+
+export interface LayoutProps {
+  children: ReactNode;
+}
 
 export type PageProps = {
   params?: Promise<Params>;
@@ -27,7 +31,7 @@ export interface ClassifiedCardProps {
 
 export enum MultiStepFormEnum {
   WELCOME = 1,
-  SELECT_DATA = 2,
+  SELECT_DATE = 2,
   SUBMIT_DETAILS = 3,
 }
 
@@ -62,5 +66,11 @@ export interface SidebarProps extends AwaitedPageProps {
   minMaxValues: Prisma.GetClassifiedAggregateType<{
     _min: { year: true; price: true; odometerReading: true };
     _max: { year: true; price: true; odometerReading: true };
+  }>;
+}
+
+export interface MultiStepFormComponentProps extends AwaitedPageProps {
+  classified: Prisma.ClassifiedGetPayload<{
+    include: { make: true };
   }>;
 }

@@ -5,7 +5,7 @@ import { FilterOptions } from "@/config/types";
 import { cn } from "@/lib/utils";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  label: string;
+  label?: string;
   value: string;
   options: { label: string; value: string }[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;

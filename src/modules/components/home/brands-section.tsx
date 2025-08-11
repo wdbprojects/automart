@@ -9,6 +9,7 @@ const BrandsSection = async () => {
     where: {
       name: {
         in: [
+          "Rolls-Royce",
           "Land Rover",
           "Aston Martin",
           "BMW",
@@ -33,7 +34,7 @@ const BrandsSection = async () => {
   });
 
   return (
-    <div className="!pb-16 bg-background">
+    <div className="!pb-16 bg-gray-200 dark:bg-popover pt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="px-6 lg:px-8 sm:text-center">
           <h2 className="mt-2 text-foreground text-4xl font-semibold text-center tracking-tight">
