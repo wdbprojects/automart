@@ -74,3 +74,9 @@ export interface MultiStepFormComponentProps extends AwaitedPageProps {
     include: { make: true };
   }>;
 }
+
+/* AUTH */
+export type PrevState = {
+  success: boolean;
+  message: string;
+};

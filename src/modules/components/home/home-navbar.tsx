@@ -77,7 +77,7 @@ const HomeNavbar = async () => {
           </span>
 
           <Button size="sm" className="cursor-pointer text-white" asChild>
-            <Link href="/">Sign In</Link>
+            <Link href={routes.signIn}>Sign In</Link>
           </Button>
           <TooltipProvider>
             <Tooltip>
