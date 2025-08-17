@@ -16,3 +16,6 @@ export const CURRENCY_CODE = {
 };
 
 export const MAX_SAFE_INTEGER_PG = 2147483647;
+
+//  INFO: 7 days in seconds
+export const SESSION_MAX_AGE = 7 * 24 * 60 * 60 * 1000;

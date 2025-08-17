@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { FaGoogle } from "react-icons/fa";
 
-const FormButtons = ({ reset }: { reset: () => void }) => {
+const FormButtons = ({
+  reset,
+  setIsVisible,
+}: {
+  reset: () => void;
+  setIsVisible: (arg0: boolean) => void;
+}) => {
   const { pending } = useFormStatus();
 
   return (
@@ -18,6 +24,7 @@ const FormButtons = ({ reset }: { reset: () => void }) => {
         size="sm"
         onClick={() => {
           reset();
+          setIsVisible(false);
         }}
       >
         Reset form

@@ -1,6 +1,6 @@
 import ChallengeMain from "@/modules/presentation/auth/challenge-main";
 
-const ChallengePage = () => {
+const ChallengePage = async () => {
   return <ChallengeMain />;
 };
 

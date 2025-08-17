@@ -23,24 +23,28 @@ import { routes } from "@/config/routes";
 import { getSourceId } from "@/lib/source-id";
 import { redis } from "@/lib/redis-store";
 import { Favourites } from "@/config/types";
+import SignOutForm from "@/modules/components/auth/sign-out-form";
+import { auth } from "@/auth";
 
 const HomeNavbar = async () => {
   const sourceId = await getSourceId();
   const favourites = await redis.get<Favourites>(sourceId ?? "");
 
+  const session = await auth();
+
   return (
-    <nav className="fixed top-0 right-0 px-2 z-50 flex justify-between items-center border-b bg-background h-16 py-2 w-full">
-      <div className="flex items-center gap-1 sm:gap-2 md:gap-4 w-full justify-between">
+    <nav className="bg-background fixed top-0 right-0 z-50 flex h-16 w-full items-center justify-between border-b px-2 py-2">
+      <div className="flex w-full items-center justify-between gap-1 sm:gap-2 md:gap-4">
         {/* //NOTE: MENU & LOGO */}
-        <div className="flex item-center gap-2 flex-shrink-0 p-1">
+        <div className="item-center flex flex-shrink-0 gap-2 p-1">
           <Link
             href={routes.home}
-            className="cursor-pointer hidden sm:flex flex-row gap-0 items-center"
+            className="hidden cursor-pointer flex-row items-center gap-0 sm:flex"
           >
-            <h6 className="text-xl font-extrabold text-primary tracking-tight">
+            <h6 className="text-primary text-xl font-extrabold tracking-tight">
               Auto
             </h6>
-            <h6 className="text-xl font-extrabold text-foreground tracking-tight">
+            <h6 className="text-foreground text-xl font-extrabold tracking-tight">
               Mart
             </h6>
           </Link>
@@ -64,21 +68,34 @@ const HomeNavbar = async () => {
         {/* //NOTE: BUTTONS & AUTH */}
         <div className="flex flex-shrink-0 items-center gap-3 p-1">
           <DarkMode />
-
-          <span className="text-xl text-center ">
+          <span className="text-center text-xl">
             <Button size="sm" variant="outline" asChild>
               <Link
                 href="/inventory"
-                className="!font-medium dark:text-muted-foreground"
+                className="dark:text-muted-foreground !font-medium"
               >
                 Search Inventory
               </Link>
             </Button>
           </span>
+          {session ? (
+            <div className="hidden items-center gap-x-6 md:flex">
+              <Button size="sm" variant="outline" asChild>
+                <Link
+                  href={routes.admin.dashboard}
+                  className="text-muted-foreground"
+                >
+                  Backoffice
+                </Link>
+              </Button>
+              <SignOutForm />
+            </div>
+          ) : (
+            <Button size="sm" className="cursor-pointer text-white" asChild>
+              <Link href={routes.signIn}>Sign In</Link>
+            </Button>
+          )}
 
-          <Button size="sm" className="cursor-pointer text-white" asChild>
-            <Link href={routes.signIn}>Sign In</Link>
-          </Button>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -93,7 +110,7 @@ const HomeNavbar = async () => {
                     {favourites?.ids.length && favourites?.ids.length > 0 ? (
                       <Badge
                         variant="destructive"
-                        className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center"
+                        className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center"
                       >
                         {favourites?.ids.length}
                       </Badge>
@@ -109,7 +126,7 @@ const HomeNavbar = async () => {
                 <TooltipTrigger asChild>
                   <SheetTrigger asChild className="cursor-pointer">
                     <Button variant="outline" size="icon" className="!p-0">
-                      <MenuIcon className="!w-6 !h-6" strokeWidth={1.3} />
+                      <MenuIcon className="!h-6 !w-6" strokeWidth={1.3} />
                     </Button>
                   </SheetTrigger>
                 </TooltipTrigger>
@@ -125,7 +142,7 @@ const HomeNavbar = async () => {
                       <Link
                         key={id}
                         href={href}
-                        className="flex items-center gap-2 py-2 text-sm font-medium text-foreground/80 hover:text-foreground bg-secondary/70 hover:bg-secondary/90 rounded-md px-4 transition-colors"
+                        className="text-foreground/80 hover:text-foreground bg-secondary/70 hover:bg-secondary/90 flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors"
                       >
                         {name}
                       </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { signInAction } from "@/app/_actions/sign-in";
 import { useRouter } from "next/navigation";
@@ -29,12 +28,16 @@ import {
 import { FaGoogle } from "react-icons/fa";
 import FormButtons from "@/modules/components/auth/form-buttons";
 import { routes } from "@/config/routes";
+import { toast } from "sonner";
+import DialogSuccess from "@/components/shared/dialog-success";
+import DialogError from "@/components/shared/dialog-error";
 
 const SignInForm = () => {
   const [state, formAction] = useActionState(signInAction, {
     success: false,
     message: "",
   });
+  const [isVisible, setIsVisible] = useState(true);
 
   const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
@@ -53,9 +56,9 @@ const SignInForm = () => {
   useEffect(() => {
     if (state.success && formRef.current) {
       router.refresh();
-      router.push(routes.challenge);
+      // router.push(routes.challenge);
     }
-  }, []);
+  }, [state]);
 
   return (
     <div>
@@ -119,8 +122,14 @@ const SignInForm = () => {
                   );
                 }}
               />
+              {state.success && isVisible && (
+                <DialogSuccess message={state?.message} />
+              )}
+              {!state.success && state.message && isVisible && (
+                <DialogError message={state?.message} />
+              )}
               <div className="mt-8 flex items-center justify-between gap-3">
-                <FormButtons reset={reset} />
+                <FormButtons reset={reset} setIsVisible={setIsVisible} />
               </div>
             </form>
           </Form>

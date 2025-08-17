@@ -1,5 +1,7 @@
 "use server";
 
+import { signIn } from "@/auth";
+import { routes } from "@/config/routes";
 import { PrevState } from "@/config/types";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { SignInSchema } from "@/app/schemas/auth.schema";
@@ -13,14 +15,23 @@ export const signInAction = async (_: PrevState, formData: FormData) => {
       password: password,
     });
     if (!success) {
-      console.log(error);
-      return { success: false, message: "Invalid Credentials" };
+      console.log({ error });
+      return {
+        success: false,
+        message: "Invalid Credentials (sign-in.ts) -> !success",
+      };
     }
-    // signIn function from auth.ts here!!!
-    return { success: true, message: "Signed in successfully" };
+    // signIn function from auth.ts
+    await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: true,
+      redirectTo: "/auth/challenge",
+    });
+    return { success: true, message: "Signed in successfully! sign-in.ts" };
   } catch (err) {
-    console.log(err);
+    console.log({ err });
     if (isRedirectError(err)) throw err;
-    return { success: false, message: "Invalid Credentials" };
+    return { success: false, message: "Invalid credentials" };
   }
 };

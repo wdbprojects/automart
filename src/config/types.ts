@@ -80,3 +80,8 @@ export type PrevState = {
   success: boolean;
   message: string;
 };
+
+export interface Challenge {
+  codeHash: string;
+  email: string;
+}

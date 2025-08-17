@@ -1,5 +1,6 @@
 "use server";
 
+import { PrevState } from "@/config/types";
 import prisma from "@/lib/prisma";
 import { CustomerStatus } from "@prisma/client";
 import {
@@ -14,7 +15,7 @@ const SubscribeSchema = z.object({
   email: z.string().email({ message: "" }),
 });
 
-export const subscribeAction = async (_: any, formData: FormData) => {
+export const subscribeAction = async (_: PrevState, formData: FormData) => {
   try {
     const { data, success, error } = SubscribeSchema.safeParse({
       firstName: formData.get("firstName") as string,
