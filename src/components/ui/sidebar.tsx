@@ -200,12 +200,12 @@ function Sidebar({
           side={side}
         >
           <div className="flex h-full w-full flex-col">
-            <div className="p-2 ">
-              <div className="flex flex-row gap-0 items-center pl-2">
-                <h6 className="text-xl font-extrabold text-primary tracking-tight">
+            <div className="p-2">
+              <div className="flex flex-row items-center gap-0 pl-2">
+                <h6 className="text-primary text-xl font-extrabold tracking-tight">
                   Auto
                 </h6>
-                <h6 className="text-xl font-extrabold text-foreground tracking-tight">
+                <h6 className="text-foreground text-xl font-extrabold tracking-tight">
                   Mart
                 </h6>
               </div>
@@ -230,7 +230,7 @@ function Sidebar({
       {/* This is what handles the sidebar gap on desktop */}
       <div
         className={cn(
-          "relative h-svh w-(--sidebar-width) bg-transparent ",
+          "relative h-svh w-(--sidebar-width) bg-transparent",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"
@@ -279,19 +279,21 @@ function SidebarTrigger({
             data-slot="sidebar-trigger"
             variant="outline"
             size="icon"
-            className={cn(" !p-0", className)}
+            className={cn("!p-0", className)}
             onClick={(event) => {
               onClick?.(event);
               toggleSidebar();
             }}
             {...props}
           >
-            <Settings2 className="!w-6 !h-6" strokeWidth={1.3} />
+            <Settings2 className="!h-6 !w-6" strokeWidth={1.3} />
             <span className="sr-only">Toggle Sidebar</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{open ? "Close Filters" : "Open Filters"}</p>
+          <p className="text-white">
+            {open ? "Close Sidebar" : "Open Sidebar"}
+          </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -445,7 +447,7 @@ function SidebarGroupAction({
       data-slot="sidebar-group-action"
       data-sidebar="group-action"
       className={cn(
-        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden  focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 md:after:hidden",
         "group-data-[collapsible=icon]:hidden",

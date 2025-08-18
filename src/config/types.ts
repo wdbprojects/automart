@@ -85,3 +85,10 @@ export interface Challenge {
   codeHash: string;
   email: string;
 }
+
+export interface FavoriteLink {
+  id: number;
+  name: string;
+  url: string;
+  emoji: string;
+}

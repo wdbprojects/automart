@@ -9,7 +9,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { LoaderCircle, RotateCw } from "lucide-react";
+import { Loader2, LoaderCircle, RotateCw } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { OneTimePasswordSchema, OtpSchemaType } from "@/app/schemas/otp-schema";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ import {
   resendChallengeAction,
 } from "@/app/_actions/challenge";
 import { toast } from "sonner";
+import { routes } from "@/config/routes";
 
 const OTPForm = () => {
   const [sendButtonsText, setSendButtonsText] = useState("Send Code");
@@ -38,13 +39,12 @@ const OTPForm = () => {
   ) => {
     startSubmitTransition(async () => {
       const result = await completeChallengeAction(data.code);
-      console.log("first", { result });
 
-      console.log(result);
       if (!result.success) {
         toast.error(`Error: ${result.message}`);
       } else {
         console.log("second", { result });
+        router.push(routes.admin.dashboard);
       }
     });
   };
@@ -99,16 +99,25 @@ const OTPForm = () => {
             className="w-full text-white"
             size="sm"
             variant="default"
-            disabled={false}
+            disabled={isSubmitPending}
           >
-            Submit
+            {isSubmitPending ? (
+              <div className="flex items-center gap-2">
+                <Loader2 className="size-3.5 animate-spin" />
+                <span>Submitting...</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <span>Submit Code</span>
+              </div>
+            )}
           </Button>
           <Button
             type="button"
             className="text-foreground/70 text-xs"
             size="sm"
             variant="ghost"
-            disabled={false}
+            disabled={isCodePending}
             onClick={sendCode}
           >
             {isCodePending ? (

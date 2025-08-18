@@ -1,12 +1,12 @@
 import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";
 import { AwaitedPageProps, Favourites, PageProps } from "@/config/types";
 import { ClassifiedStatus, Prisma } from "@prisma/client";
-import prisma from "@/lib/prisma";
 import { redis } from "@/lib/redis-store";
 import { getSourceId } from "@/lib/source-id";
 import { PageSchema } from "@/app/schemas/page.schema";
 import InventoryMain from "@/modules/presentation/inventory/inventory-main";
 import { buildClassifiedFilterQuery } from "@/lib/utils";
+import prisma from "@/lib/prisma";
 
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   // validate page

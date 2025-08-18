@@ -22,17 +22,17 @@ const InventoryMain = ({
   minMaxResult: MinMaxResultType;
 }) => {
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <InventoryNavbar />
       <div className="flex overflow-y-auto">
         <SidebarFilters
           minMaxResult={minMaxResult}
           searchParams={searchParams ?? {}}
         />
-        <div className="flex flex-col justify-between pb-[0rem] pt-[4rem] w-full">
+        <div className="flex w-full flex-col justify-between pt-[4rem] pb-[0rem]">
           <div className="flex-1">
-            <div className="flex flex-col md:flex-row items-center justify-start gap-2 md:justify-between px-4 py-1 mb-10 md:mb-0">
-              <h2 className="text-sm font-semibold text-foreground flex-1 min-w-[250px]">
+            <div className="mb-10 flex flex-col items-center justify-start gap-2 px-4 py-1 md:mb-0 md:flex-row md:justify-between">
+              <h2 className="text-foreground min-w-[250px] flex-1 text-sm font-semibold">
                 Items found: {count}
               </h2>
               <CustomPagination

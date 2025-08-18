@@ -1,8 +1,8 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { LayoutProps } from "@/config/types";
 
-const InventoryLayout = ({ children }: LayoutProps) => {
+const DashboardLayoutModule = ({ children }: LayoutProps) => {
   return <SidebarProvider>{children}</SidebarProvider>;
 };
 
-export default InventoryLayout;
+export default DashboardLayoutModule;

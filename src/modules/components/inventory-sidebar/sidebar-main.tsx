@@ -65,11 +65,11 @@ const SidebarMain = ({ minMaxResult, searchParams }: SidebarProps) => {
 
   return (
     <Sidebar
-      className="pt-18 z-40 rounded border-none"
+      className="z-40 rounded border-none pt-18"
       variant="floating"
       collapsible="offcanvas"
     >
-      <SidebarContent className="py-0 pb-16  m-1">
+      <SidebarContent className="m-1 py-0 pb-16">
         <SidebarHeader searchParams={searchParams} />
         <hr className="mx-2" />
         <SidebarFilters
@@ -80,10 +80,10 @@ const SidebarMain = ({ minMaxResult, searchParams }: SidebarProps) => {
         />
       </SidebarContent>
       <SidebarFooter className="bg-background rounded-b-lg p-4">
-        <div className="flex justify-center w-full rounded-sm">
+        <div className="flex w-full justify-center rounded-sm">
           <NewsletterForm />
         </div>
-        <div className="px-0 py-2 bg-secondary text-sm text-center">
+        <div className="bg-secondary px-0 py-2 text-center text-sm">
           AutoMart &copy; 2025
         </div>
       </SidebarFooter>

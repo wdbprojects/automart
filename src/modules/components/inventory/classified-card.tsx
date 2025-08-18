@@ -45,24 +45,24 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
     return [
       {
         id: "odometerReading",
-        icon: <GaugeCircle className="w-4 h-4" />,
+        icon: <GaugeCircle className="h-4 w-4" />,
         value: `${formatNumber(
           classified?.odometerReading,
         )} ${formatOdometerUnit(classified?.odometerUnit)}`,
       },
       {
         id: "transmission",
-        icon: <Cog className="w-4 h-4" />,
+        icon: <Cog className="h-4 w-4" />,
         value: formatTransmission(classified?.transmission),
       },
       {
         id: "fuelType",
-        icon: <Fuel className="w-4 h-4" />,
+        icon: <Fuel className="h-4 w-4" />,
         value: formatFuelType(classified?.fuelType),
       },
       {
         id: "color",
-        icon: <Paintbrush2 className="w-4 h-4" />,
+        icon: <Paintbrush2 className="h-4 w-4" />,
         value: formatColor(classified?.color),
       },
     ];
@@ -76,8 +76,8 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <Card className="w-full pt-0 pb-4 gap-2 rounded-md overflow-hidden flex flex-col justify-between space-y-2">
-            <CardContent className="px-0 relative">
+          <Card className="flex w-full flex-col justify-between gap-2 space-y-2 overflow-hidden rounded-md pt-0 pb-4">
+            <CardContent className="relative px-0">
               <Link href={routes.singleClassified(classified.slug)}>
                 <ImgixImage
                   placeholder="blur"
@@ -87,11 +87,11 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                   width={500}
                   height={300}
                   quality={25}
-                  className="object-cover w-auto h-auto"
+                  className="h-auto w-auto object-cover"
                 />
               </Link>
-              <div className="absolute top-2.5 right-3.5 bg-secondary dark:bg-[#eff6ff] dark:text-background px-2 py-1 rounded">
-                <p className="text-xs lg:text-sm font-semibold">
+              <div className="bg-secondary dark:text-background absolute top-2.5 right-3.5 rounded px-2 py-1 dark:bg-[#eff6ff]">
+                <p className="text-xs font-semibold lg:text-sm">
                   {formatPrice({
                     price: classified.price,
                     currency: classified.currency,
@@ -106,12 +106,12 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
               <div className="flex flex-col space-y-1 px-2 pt-2">
                 <Link
                   href={routes.singleClassified("slug")}
-                  className="text-sm md:text-sm lg:text-base leading-5 line-clamp-1 capitalize transition-colors hover:text-primary"
+                  className="hover:text-primary line-clamp-1 text-sm leading-5 capitalize transition-colors md:text-sm lg:text-base"
                 >
                   {classified.title}
                 </Link>
                 {classified?.description && (
-                  <div className="text-sm leading-5 text-muted-foreground line-clamp-2 mb-2">
+                  <div className="text-muted-foreground mb-2 line-clamp-2 text-sm leading-5">
                     <HTMLParser html={classified.description} />
                     &nbsp;
                   </div>
@@ -125,7 +125,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                       return (
                         <li
                           key={info.id}
-                          className="flex items-center gap-1.5 font-normal text-xs text-muted-foreground"
+                          className="text-muted-foreground flex items-center gap-1.5 text-xs font-normal"
                         >
                           {info.icon}
                           {info.value}
@@ -135,10 +135,10 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
                 </ul>
               </div>
             </CardContent>
-            <CardFooter className="px-2 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <CardFooter className="flex flex-col items-center justify-between gap-2 px-2 sm:flex-row">
               <Button
                 variant="outline"
-                className="cursor-pointer sm:flex-1 w-full"
+                className="w-full cursor-pointer sm:flex-1"
                 size="sm"
               >
                 <Link
@@ -154,7 +154,7 @@ const ClassifiedCard = ({ classified, favourites }: ClassifiedCardProps) => {
               <Button
                 variant="default"
                 size="sm"
-                className="cursor-pointer sm:flex-1 w-full text-white dark:text-foreground"
+                className="dark:text-foreground w-full cursor-pointer text-white sm:flex-1"
               >
                 <Link
                   href={routes.singleClassified(classified.slug)}

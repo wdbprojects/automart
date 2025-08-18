@@ -25,7 +25,7 @@ const HeroSection = async ({ searchParams }: AwaitedPageProps) => {
 
   return (
     <section
-      className="relative flex items-center justify-center h-[calc(100vh-4rem)] pb-[6rem] bg-no-repeat bg-cover bg-center pt-24 px-2"
+      className="relative flex h-[calc(100vh-4rem)] items-center justify-center bg-cover bg-center bg-no-repeat px-2 pt-24 pb-[6rem]"
       style={{
         backgroundImage: `url(${imgixLoader({
           src: imageSources.carLineup,
@@ -35,18 +35,18 @@ const HeroSection = async ({ searchParams }: AwaitedPageProps) => {
       }}
     >
       <div className="absolute inset-0 bg-[#020817] opacity-75"></div>
-      <div className="container lg:grid grid-cols-2 space-y-4 sm:space-y-12 items-center relative z-10">
+      <div className="relative z-10 container grid-cols-2 items-center space-y-4 sm:space-y-12 lg:grid">
         <div className="px-10 lg:px-0">
-          <h1 className="text-xl leading-2 sm:leading-snug sm:text-2xl text-center md:text-3xl lg:text-5xl uppercase text-white font-extrabold">
+          <h1 className="text-center text-xl leading-2 font-extrabold text-white uppercase sm:text-2xl sm:leading-snug md:text-3xl lg:text-5xl">
             Unbeatable deals on new <br /> and used cars
           </h1>
-          <h2 className="mt-4 uppercase text-center text-base md:text-xl lg:text-2xl text-white">
+          <h2 className="mt-4 text-center text-base text-white uppercase md:text-xl lg:text-2xl">
             Discover your dream car today
           </h2>
         </div>
-        <div className="max-w-md w-full mx-auto p-6 bg-background rounded-xl shadow-lg">
+        <div className="bg-background mx-auto w-full max-w-md rounded-xl p-6 shadow-lg">
           <div className="space-y-4 pb-4">
-            <div className="space-y-2 flex flex-col w-full gap-x-4">
+            <div className="flex w-full flex-col space-y-2 gap-x-4">
               <HomeTaxonomyFilters
                 searchParams={searchParams}
                 minMaxValues={minMaxValues}

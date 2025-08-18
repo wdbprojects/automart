@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
+
 import { Model, ModelVariant } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 export const GET = async (req: NextRequest) => {
   const params = new URL(req.url).searchParams;

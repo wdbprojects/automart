@@ -26,7 +26,7 @@ export const socialLinks = [
     name: "YouTube",
     href: "https://youtube.com",
     icon: (
-      <SiYoutube className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+      <SiYoutube className="text-muted-foreground hover:text-primary h-5 w-5 transition-colors" />
     ),
   },
   {
@@ -34,7 +34,7 @@ export const socialLinks = [
     name: "Facebook",
     href: "https://facebook.com",
     icon: (
-      <SiMeta className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+      <SiMeta className="text-muted-foreground hover:text-primary h-5 w-5 transition-colors" />
     ),
   },
   {
@@ -42,7 +42,40 @@ export const socialLinks = [
     name: "Discord",
     href: "https://discord.com",
     icon: (
-      <SiDiscord className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+      <SiDiscord className="text-muted-foreground hover:text-primary h-5 w-5 transition-colors" />
     ),
+  },
+];
+
+export const favoritesLinks = [
+  {
+    id: 1,
+    name: "Project Management",
+    url: "#",
+    emoji: "📊",
+  },
+  {
+    id: 2,
+    name: "Personal Finance",
+    url: "#",
+    emoji: "💰",
+  },
+  {
+    id: 3,
+    name: "Movie & TV Shows",
+    url: "#",
+    emoji: "🎬",
+  },
+  {
+    id: 4,
+    name: "Daily Habits",
+    url: "#",
+    emoji: "📔",
+  },
+  {
+    id: 5,
+    name: "Health & Wellness",
+    url: "#",
+    emoji: "🍏",
   },
 ];

@@ -2,7 +2,6 @@ import DarkMode from "@/components/shared/dark-mode";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Link from "next/link";
-import SearchInput from "../inventory-sidebar/search-input";
 import {
   Tooltip,
   TooltipContent,
@@ -25,11 +24,11 @@ import { navLinks } from "@/lib/data-links";
 import { Favourites } from "@/config/types";
 import { redis } from "@/lib/redis-store";
 import { getSourceId } from "@/lib/source-id";
-import SignOutForm from "../auth/sign-out-form";
-import { routes } from "@/config/routes";
 import { auth } from "@/auth";
+import { routes } from "@/config/routes";
+import SignOutForm from "@/modules/components/auth/sign-out-form";
 
-const InventoryNavbar = async () => {
+const AdminNavbar = async () => {
   const sourceId = await getSourceId();
   const favourites = await redis.get<Favourites>(sourceId ?? "");
   const session = await auth();
@@ -52,27 +51,12 @@ const InventoryNavbar = async () => {
             </h6>
           </Link>
         </div>
-        {/* //NOTE: SEARCH BAR*/}
-        <div className="mx-auto hidden max-w-[720px] flex-1 justify-center p-1 md:flex">
-          {/* <SearchInputNav /> */}
-          <SearchInput
-            className="mx-auto w-full max-w-[600px] rounded-full pr-12 pl-8 shadow-none"
-            placeholder="Search for classifieds..."
-          />
-        </div>
+
         {/* //NOTE: AUTH */}
         <div className="flex flex-shrink-0 items-center gap-3 p-1">
           <DarkMode />
           {session ? (
-            <div className="hidden items-center gap-x-6 md:flex">
-              <Button size="sm" variant="outline" asChild>
-                <Link
-                  href={routes.admin.dashboard}
-                  className="text-muted-foreground"
-                >
-                  Backoffice
-                </Link>
-              </Button>
+            <div className="">
               <SignOutForm />
             </div>
           ) : (
@@ -153,4 +137,4 @@ const InventoryNavbar = async () => {
   );
 };
 
-export default InventoryNavbar;
+export default AdminNavbar;

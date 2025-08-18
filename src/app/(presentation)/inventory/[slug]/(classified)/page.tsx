@@ -1,6 +1,6 @@
 import { routes } from "@/config/routes";
 import { PageProps } from "@/config/types";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import SingleClassifiedMain from "@/modules/presentation/single-classified/single-classified-main";
 import { ClassifiedStatus } from "@prisma/client";
 import { notFound, redirect } from "next/navigation";

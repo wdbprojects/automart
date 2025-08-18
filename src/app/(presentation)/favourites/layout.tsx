@@ -1,11 +1,7 @@
-import { ReactNode } from "react";
 import FavouritesLayoutModule from "@/modules/layouts/favorites-layout";
+import { LayoutProps } from "@/config/types";
 
-interface PresentationLayoutProps {
-  children: ReactNode;
-}
-
-const FavouritesLayout = ({ children }: PresentationLayoutProps) => {
+const FavouritesLayout = ({ children }: LayoutProps) => {
   return <FavouritesLayoutModule>{children}</FavouritesLayoutModule>;
 };
 

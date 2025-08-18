@@ -2,13 +2,13 @@ import type { NextAuthConfig, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import ResendProvider from "next-auth/providers/resend";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/lib/prisma";
 import { SESSION_MAX_AGE } from "@/config/constants";
 import { SignInSchema } from "@/app/schemas/sign-in.schema";
 import { bcryptPasswordCompare } from "@/lib/bcrypt";
 import { routes } from "@/config/routes";
 import { AdapterUser } from "@auth/core/adapters";
 import { issueChallenge } from "@/lib/otp";
+import prisma from "@/lib/prisma";
 
 export const config = {
   adapter: PrismaAdapter(prisma),
